@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: API-GATEWAY
+
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/**
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/**
